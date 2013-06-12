@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="SignGuestBook">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignGuestBookResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RetrieveGuestBookData">
+        <s:complexType />
+      </s:element>
+      <s:element name="RetrieveGuestBookDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveGuestBookDataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SignGuestBookSoapIn">
+    <wsdl:part name="parameters" element="tns:SignGuestBook" />
+  </wsdl:message>
+  <wsdl:message name="SignGuestBookSoapOut">
+    <wsdl:part name="parameters" element="tns:SignGuestBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveGuestBookDataSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveGuestBookData" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveGuestBookDataSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveGuestBookDataResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="SignGuestBook">
+      <wsdl:input message="tns:SignGuestBookSoapIn" />
+      <wsdl:output message="tns:SignGuestBookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveGuestBookData">
+      <wsdl:input message="tns:RetrieveGuestBookDataSoapIn" />
+      <wsdl:output message="tns:RetrieveGuestBookDataSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SignGuestBook">
+      <soap:operation soapAction="http://tempuri.org/SignGuestBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveGuestBookData">
+      <soap:operation soapAction="http://tempuri.org/RetrieveGuestBookData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SignGuestBook">
+      <soap12:operation soapAction="http://tempuri.org/SignGuestBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveGuestBookData">
+      <soap12:operation soapAction="http://tempuri.org/RetrieveGuestBookData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://localhost:56055/GuestbookWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://localhost:56055/GuestbookWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
